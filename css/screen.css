@@ -1,0 +1,209 @@
+#Screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(1px);
+  z-index: 10;
+  color: white;
+  font-size: 32px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.Hide {
+  animation: hide 0.5s ease-out forwards;
+}
+
+.Show {
+  animation: hide 0.5s ease-out backwards;
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    pointer-events: all;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.CurrentScreen {
+  width: calc(clamp(128px, 100%, 1088px) - 2em);
+  /* height: clamp(128px, 100%, 1088px); */
+  margin: 1em;
+  aspect-ratio: 2 1;
+
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  justify-content: center;
+  border: solid 2px rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 16px;
+  padding: 16px;
+  align-items: end;
+}
+
+@media (min-width: 1232px) {
+  .CurrentScreen {
+    width: 100%;
+  }
+}
+
+.SelectAOption {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin-bottom: 8px;
+}
+/* 
+.SelectAOption > *:first-child {
+  justify-self: end;
+  text-align: right;
+} */
+
+h1 {
+  font-size: 128px;
+  font-weight: 900;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  -webkit-text-stroke: 4px rgb(0, 0, 0);
+  margin: 0;
+  padding: 0;
+  margin-bottom: 0.5em;
+}
+
+#GameTitle {
+  font-size: clamp(3rem, calc(1.85rem + 4.74vw), 10rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  white-space: pre;
+  /* min-width: 1032px; */
+}
+
+#GameTitle span {
+  display: inline-block;
+}
+
+#trap {
+  font-weight: bold;
+  color: rgb(87, 184, 236);
+}
+
+#catSentance {
+  color: rgb(156, 220, 254);
+  animation: TitleCatAnimation 1.5s ease-out infinite alternate;
+}
+
+#GameTitle::after {
+  display: inline-block;
+  content: "";
+  width: 1em;
+  height: 1em;
+  background: url(../img/Cat\ Icon\ Bigger.png) no-repeat center center;
+  background-size: cover;
+
+  image-rendering: pixelated;
+  margin-left: 0.5em;
+}
+
+select {
+  background-color: rgb(43, 43, 43);
+  color: rgb(208, 208, 208);
+  border-radius: 8px;
+  font-size: 32px;
+}
+
+select:hover {
+  color: white;
+  background-color: rgb(75, 75, 75);
+}
+
+#StartGameButton {
+  background-color: rgb(92, 92, 92);
+  border: solid 2px rgba(255, 255, 255, 0.5);
+  color: white;
+  border-radius: 8px;
+  font-size: 32px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;
+
+  padding-inline: 16px;
+  display: block;
+  width: max-content;
+  margin-inline: auto;
+  margin-top: 1em;
+}
+
+#StartGameButton:hover {
+  background-color: rgb(130, 130, 130);
+  border: solid 2px rgba(255, 255, 255, 0.6);
+}
+
+#StartGameButton:active {
+  background-color: rgb(56, 56, 56);
+  border: solid 2px rgba(255, 255, 255, 0.75);
+}
+
+.Result#Win {
+  color: rgb(27, 187, 27);
+  -webkit-text-stroke: 4px rgb(11, 131, 11);
+  text-align: center;
+}
+
+.Result#Lost {
+  color: rgb(209, 14, 14);
+  -webkit-text-stroke: 4px rgb(107, 12, 12);
+  text-align: center;
+}
+
+@keyframes TitleCatAnimation {
+  0%,
+  25% {
+    text-shadow: -0.05em 0.05em 0px rgba(255, 255, 255, 0.9);
+  }
+  50% {
+    text-shadow: 0em 0.05em 2px rgba(255, 255, 255, 0.75);
+  }
+  75%,
+  100% {
+    text-shadow: 0.05em 0.05em 0px rgba(255, 255, 255, 0.9);
+  }
+}
+
+#GameWasConfig p {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#GameWasConfig table {
+  border-collapse: separate;
+  border-spacing: 0.5em;
+}
+
+#GameWasConfig table th {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+#GameWasConfig table td {
+  background-color: rgba(255, 255, 255, 0.125);
+}
+
+#GameWasConfig table :is(th, td) {
+  text-align: center;
+  padding-block: 0.5em;
+  padding-inline: 1em;
+  border: solid 1px white;
+  border-radius: 8px;
+}

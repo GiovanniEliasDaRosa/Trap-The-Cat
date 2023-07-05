@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <!-- <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0, user-scalable=no" /> -->
+
+    <title>Trap The Cat</title>
+    <link rel="shortcut icon" href="img/Cat Icon.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/screen.css" />
+  </head>
+  <body>
+    <div id="game">
+      <div class="map" id="map"></div>
+
+      <p id="cat"></p>
+    </div>
+
+    <div id="Screen">
+      <div class="CurrentScreen" id="StartGame">
+        <h1 id="GameTitle"><span id="trap">Trap</span> The <span id="catSentance">Cat</span></h1>
+
+        <div id="Configurations">
+          <div class="SelectAOption" id="CatStepsSelect">
+            <label for="CatSteps">Cat Steps</label>
+
+            <select name="CatSteps" id="CatSteps">
+              <option value="1">1 - Normal</option>
+              <option value="2">2 - Hard</option>
+            </select>
+          </div>
+
+          <div class="SelectAOption" id="WallQuantitySelect">
+            <label for="WallQuantity">Wall Quantity</label>
+
+            <select name="WallQuantity" id="WallQuantity">
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+              <option value="Expert">Expert</option>
+            </select>
+          </div>
+
+          <div class="SelectAOption" id="MapSizeSelect">
+            <label for="MapSize">Chose a Map Size</label>
+
+            <select name="MapSize" id="MapSize">
+              <option value="7">7x7</option>
+              <option value="9">9x9</option>
+              <option value="11">11x11</option>
+              <option value="13">13x13</option>
+              <option value="15">15x15</option>
+              <option value="17">17x17</option>
+            </select>
+          </div>
+
+          <button onclick="StartGame()" id="StartGameButton">Start Game</button>
+        </div>
+      </div>
+
+      <div class="CurrentScreen" id="YouWinOrLose" style="display: none">
+        <h1 id="Win" class="Result" style="display: none">You Win!</h1>
+        <h1 id="Lost" class="Result" style="display: none">You Lost!</h1>
+        <div id="GameWasConfig" class="Result">
+          <p>Configurations of this game:</p>
+          <table>
+            <tr>
+              <th>Cat Steps</th>
+              <th>Wall Quantity</th>
+              <th>Map Size</th>
+            </tr>
+            <tr>
+              <td id="CatStepsShow">[]</td>
+              <td id="WallQuantityShow">[]</td>
+              <td id="MapSizeShow">[]</td>
+            </tr>
+          </table>
+        </div>
+
+        <button onclick="OpenStartGame()" id="StartGameButton">Start New Game</button>
+      </div>
+    </div>
+
+    <template id="ItemTemplate">
+      <p class="item" onclick="Clicked(this)"></p>
+    </template>
+
+    <script src="Codes/Functions.js"></script>
+    <script src="Codes/Code.js"></script>
+    <script src="Codes/Testing.js"></script>
+
+    <audio src="audio/Hover.wav" controls style="display: none" id="HoverAudio"></audio>
+    <audio src="audio/Click.wav" controls style="display: none" id="ClickAudio"></audio>
+  </body>
+</html>

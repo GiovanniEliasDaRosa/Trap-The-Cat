@@ -1,0 +1,296 @@
+body {
+  background: linear-gradient(0deg, rgb(0, 67, 89) 0%, rgb(74, 175, 208) 120%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  height: 100dvh;
+  user-select: none;
+}
+/* 
+@media (max-width: 914px) {
+  body {
+    width: 200vw;
+    width: 200svw;
+  }
+} */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+}
+
+#game {
+  position: relative;
+  border: solid 4px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#map {
+  background-color: rgb(23, 70, 86);
+  display: grid;
+  width: max-content;
+}
+
+.item {
+  background-color: rgb(87, 77, 98);
+  width: 64px;
+  height: 64px;
+  border: solid 2px rgb(134, 122, 145);
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0px 0px 2px black;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  /* 
+  background: url(../img/Path.png) no-repeat center center;
+  overflow: hidden;
+  background-size: cover;
+  image-rendering: pixelated; */
+}
+
+.SelectedFortesting {
+  border: dashed 1px rgb(238, 217, 131) !important;
+  background: rgb(230, 187, 16) !important;
+  box-shadow: inset 0 0 4px 0 rgb(108, 89, 10) !important;
+  color: white !important;
+}
+
+.SelectedFortesting.clicked {
+  border: dashed 1px rgb(214 94 86) !important;
+  background: rgb(176, 66, 58) !important;
+  box-shadow: inset 0 0 4px 0 rgb(93, 20, 15) !important;
+  color: white !important;
+}
+
+.item:not(.clicked):hover {
+  /* scale: 0.95 0.95; */
+  background-color: rgb(135, 124, 147);
+  border: solid 2px rgb(167, 154, 179);
+
+  /* background: linear-gradient(135deg,
+  rgba(153, 140, 167, 0) 49%, rgba(228, 223, 233, 0.5) 50%, rgba(153, 140, 167, 0) 55%,
+  rgba(153, 140, 167, 0) 64%, rgba(191, 180, 202, 0.5) 65%, rgba(153, 140, 167, 0) 75%
+  ), rgb(153, 140, 167); */
+  background: linear-gradient(
+      135deg,
+      rgba(153, 140, 167, 0) 49.9%,
+      rgba(228, 223, 233, 0.5) 50%,
+      rgba(228, 223, 233, 0.5) 52%,
+      rgba(153, 140, 167, 0) 52.1%,
+      rgba(153, 140, 167, 0) 55%,
+      rgba(191, 180, 202, 0.5) 56%,
+      rgba(191, 180, 202, 0.5) 60%,
+      rgba(153, 140, 167, 0) 65%
+    ),
+    rgb(153, 140, 167);
+
+  background-size: 400% 400%;
+  z-index: 1;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.25);
+
+  /* animation: GradientBackground 2s ease-in-out infinite forwards, ScaleUpDown 1s ease-in-out infinite alternate; */
+  animation: GradientBackground 2s ease-in-out infinite forwards;
+}
+
+.item:not(.clicked):active {
+  scale: 0.9 0.9;
+  animation: none;
+}
+
+.clicked {
+  /* background-color: rgb(129, 78, 179); */
+  /* border: solid 2px rgb(176, 126, 225); */
+  /* background-color: rgb(89, 54, 123); */
+  background: url(../img/Wall.png) no-repeat center center;
+  overflow: hidden !important;
+  background-size: cover !important;
+  image-rendering: pixelated !important;
+
+  /* border: solid 2px rgb(118, 82, 154); */
+  border: solid 0px rgba(255, 255, 255, 0);
+  color: rgba(255, 255, 255, 0.5);
+  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+
+  /* scale: -1 1; */
+  /* transform: rotateY(180deg); */
+  cursor: not-allowed;
+  /* color: transparent; */
+  /* -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.5); */
+  /* font-weight: 900; */
+}
+
+#cat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+
+  /* background-color: rgb(184, 44, 44); */
+  width: 64px;
+  height: 64px;
+  /* border: solid 2px rgba(227, 170, 170, 0.5); */
+  border: solid 2px rgba(255, 255, 255, 0);
+  box-shadow: 0 0 16px 2px rgba(0, 0, 0, 0.75);
+  background-color: rgba(83, 46, 46, 0.25);
+
+  backdrop-filter: blur(0.5px);
+
+  transition: all 0.5s ease-out, scale 0s;
+}
+
+#cat::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transition: transform 0.25s ease-out;
+  image-rendering: pixelated;
+  /* Idle Animation */
+  background: url(../img/Cat\ idle.png) no-repeat center center;
+  animation: CatIdle 1.5s infinite steps(2) alternate;
+
+  /* Walking Animation */
+  /* background: url(../img/CatWalking.png) no-repeat;
+  animation: CatWalk 1s infinite steps(7); */
+
+  overflow: hidden;
+  background-size: cover;
+  /* transform: rotateY(180deg); */ /* Flip Cat */
+}
+
+#cat.Walking::before {
+  /* Idle Animation */
+  /* background: url(../img/Cat\ idle.png) no-repeat center center;
+  animation: CatIdle 1.5s infinite steps(2) alternate; */
+
+  /* Walking Animation */
+  background: url(../img/CatWalking.png) no-repeat;
+  animation: CatWalk 1s infinite steps(12);
+  /* animation: CatWalk 1s forwards; */
+
+  overflow: hidden;
+  background-size: cover;
+}
+
+#cat.Died::before {
+  transition: 1s cubic-bezier(0, 1.1, 0, 1.2);
+  scale: 1 0.25;
+}
+
+#cat.Won::before {
+  animation: CatWon 2s ease-out forwards;
+}
+
+/* #cat::before, #cat::after{
+  content: '•';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: rgb(239, 239, 239);
+  font-size: 8px;
+  line-height: 8px;
+  color: rgb(112, 48, 13);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  animation: look 4s infinite alternate;
+  border-radius: 50%;
+}
+
+#cat::before{
+  top: 4px;
+  left: 4px;
+}
+
+#cat::after{
+  top: 4px;
+  right: 4px;
+} */
+
+@keyframes look {
+  0%,
+  20% {
+    transform: translate(-2px, 0px);
+  }
+  40%,
+  60% {
+    transform: translate(0px, 0px);
+  }
+  80%,
+  100% {
+    transform: translate(2px, 0px);
+  }
+}
+
+@keyframes GradientBackground {
+  0% {
+    /* background-color: rgb(177, 167, 188); */
+    background-position: 25% 25%;
+  }
+  100% {
+    /* background-color: rgb(153, 140, 167); */
+    background-position: 100% 100%;
+  }
+}
+
+/* @keyframes ScaleUpDown {
+  0%{
+    border: solid 2px rgb(241, 236, 246);
+    scale: 1 1;
+  }
+  100%{
+    border: solid 2px rgb(220, 211, 229);
+    scale: 0.95 0.95;
+  }
+} */
+
+@keyframes CatIdle {
+  0% {
+    background-position: 0px center;
+  }
+  25% {
+    /* background-position: -120px center; */
+    /* background-position: calc((-64px) * 2 + 8px) center; */
+    background-position: calc((-64px) * 2 + (4px * 2)) center;
+  }
+  30%,
+  100% {
+    background-position: 0px center;
+  }
+}
+
+@keyframes CatWalk {
+  0% {
+    background-position: 0px center;
+    /* background-position: calc(-128px - 68px) center; */
+  }
+  50%,
+  100% {
+    /* background-position: -720px center; */
+    background-position: -720px center;
+    /* background-position: calc((-384px + 2px) * 2 + (24px * 1.9)) center; */
+    background-position: calc((-384px) * 2 + (4px * 12)) center;
+    /* background-position: calc(128px - 8px) center; */
+  }
+}
+
+@keyframes CatWon {
+  0% {
+    background-position: 0px center;
+    opacity: 1;
+    scale: 1 1;
+  }
+  100% {
+    background-position: 0px center;
+    opacity: 0;
+    scale: 0.1 0.1;
+  }
+}
