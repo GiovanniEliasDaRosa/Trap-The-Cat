@@ -1,6 +1,7 @@
 # Trap The Cat Game
 
 This is a game made by **me** and my friend **Paolo**
+
 [Play The Game Here](https://giovannieliasdarosa.github.io/Trap-The-Cat/)
 
 ### Languages Used
