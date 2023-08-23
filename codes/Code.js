@@ -815,22 +815,25 @@ function CodigoParaAndar(CordenadaEscolhida) {
   // if we passed the max steps for the cat to move
   if (!infinity) {
     console.log(movimento);
-    // for (let lin = 0; lin < MapWidth; lin++) {
-    //   var line = document.querySelectorAll(`[data-y='${lin}']`);
-    //   console.log(line);
-    //   console.log([...line]);
 
-    //   line.forEach((elem) => {
-    //     elem.classList.remove("SelectedFortesting");
-    //   });
-    // }
-    // for (let i = 0; i < movimento.length; i++) {
-    //   const move = movimento[i];
-    //   var element = document.querySelector(`[data-y='${move[0]}'][data-x='${move[1]}']`);
-    //   console.log(move);
-    //   console.log(element);
-    //   element.classList.add("SelectedFortesting");
-    // }
+    // -- View cat path
+    for (let lin = 0; lin < MapWidth; lin++) {
+      var line = document.querySelectorAll(`[data-y='${lin}']`);
+      // console.log(line);
+      // console.log([...line]);
+
+      line.forEach((elem) => {
+        elem.classList.remove("SelectedFortesting");
+      });
+    }
+    for (let i = 0; i < movimento.length; i++) {
+      const move = movimento[i];
+      var element = document.querySelector(`[data-y='${move[0]}'][data-x='${move[1]}']`);
+      console.log(move);
+      console.log(element);
+      element.classList.add("SelectedFortesting");
+    }
+    // end view
 
     // Movimento do gato
     var OndeIr = movimento[movimento.length - 1];
