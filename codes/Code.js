@@ -817,7 +817,7 @@ function CodigoParaAndar(CordenadaEscolhida) {
     console.log(movimento);
 
     // -- View cat path
-    for (let lin = 0; lin < MapWidth; lin++) {
+    /*for (let lin = 0; lin < MapWidth; lin++) {
       var line = document.querySelectorAll(`[data-y='${lin}']`);
       // console.log(line);
       // console.log([...line]);
@@ -832,7 +832,7 @@ function CodigoParaAndar(CordenadaEscolhida) {
       console.log(move);
       console.log(element);
       element.classList.add("SelectedFortesting");
-    }
+    }*/
     // end view
 
     // Movimento do gato
